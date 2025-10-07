@@ -1,0 +1,165 @@
+# rasa-bot/domain.yml
+version: "3.1"
+
+
+intents:
+  - greet
+  - goodbye
+  - list_properties
+  - ask_price
+  - ask_recommendation
+  - provide_preferences # user shares budget, location, bedrooms, etc.
+  - sell_property
+  - search_properties
+
+
+entities:
+  - location
+  - budget
+  - urgency
+  - property_id
+  - unitId
+  - property_type
+  - bedrooms
+  - price
+  - description
+
+
+
+
+slots:
+  property_id:
+      type: text
+      influence_conversation: true
+      mappings:
+        - type: from_entity
+          entity: property_id
+  unitId:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: unitId
+  location:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: location
+  property_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: property_type
+  bedrooms:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: bedrooms
+  price:
+    type: float
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: price
+  description:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: description
+  conversation_id:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: custom
+
+
+  persona_name:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: custom
+
+
+  persona_style:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: custom
+
+  persona_objective:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: custom
+
+  budget:
+    type: float
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: budget
+
+  urgency:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: urgency
+
+
+
+forms:
+  sell_property_form:
+    required_slots:
+      - property_id
+      - unitId
+      - location
+      - property_type
+      - bedrooms
+      - price
+      - description
+
+
+
+responses:
+  utter_greet:
+    - text: "Chào! mình là {persona_name}. "
+  utter_goodbye:
+    - text: "Bye anh chị nhé! Chúc anh chị một ngày tốt lành."
+  # utter_ask_property_id:
+  #   - text: "Anh/chị cho em xin mã căn bất động sản nhé (ví dụ: APT-D7-001)."
+  # utter_ask_unitId:
+  #   - text: "Mã căn (unit ID) là gì vậy anh/chị? (ví dụ: U001 nha)."
+  # utter_ask_location:
+  #   - text: "Bất động sản này nằm ở khu vực nào ạ? (ví dụ: Quận 7 hay Phú Nhuận chẳng hạn)."
+  # utter_ask_property_type:
+  #   - text: "Loại bất động sản mình muốn đăng là gì ạ? (Chọn 1 trong 4 loại: căn hộ, studio, nhà ở, nhà mặt tiền)"
+  # utter_ask_bedrooms:
+  #   - text: "Căn này có mấy phòng ngủ anh/chị ha?"
+  utter_ask_property_info:
+    - text: "Anh/chị muốn tìm bất động sản như thế nào ạ? (ví dụ: Mua căn hộ 2 phòng ngủ ở Quận 7, giá dưới 1000000000, chuyển tháng sau)"
+  utter_response_recommendation:
+    - text: "Dựa trên thông tin anh/chị cung cấp, mình gợi ý một số bất động sản phù hợp như sau:" 
+  utter_thanks:
+    - text: "Cảm ơn anh/chị đã chia sẻ thông tin. Mình sẽ tìm kiếm và phản hồi sớm nhất có thể nhé!"
+  # utter_ask_budg:
+  #   - text: "Anh/chị muốn đăng giá bao nhiêu cho căn này ạ?"
+  # utter_ask_description:
+  #   - text: "Anh/chị mô tả ngắn gọn giúp em nha — ví dụ diện tích, hướng, tiện ích xung quanh, hay điểm nổi bật."
+  # utter_embed_success:
+  #   - text: "✅ Dạ ok anh/chị! Em đã lưu thông tin {property_id} vào hệ thống rồi nha."
+  utter_ack_prefs:
+    - text: "Mình đã ghi nhận thông tin của bạn. Tiếp tục nhé!"
+  # utter_embed_fail:
+  #   - text: "⚠️ Ủa hình như hệ thống đang lỗi nhẹ, em chưa lưu được thông tin căn này. Anh/chị chờ em chút hoặc thử lại sau nha."
+
+
+actions:
+  - action_initialize_conversation
+  - action_search_properties
+  - action_ai_rephrase
+  - action_embed_property

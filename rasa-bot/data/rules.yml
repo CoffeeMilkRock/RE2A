@@ -1,0 +1,41 @@
+# rasa-bot/data/rules.yml
+version: "3.1"
+
+
+rules:
+- rule: Initialize context at session start
+  steps:
+    - intent: greet
+    - action: action_initialize_conversation
+    - action: utter_greet 
+
+
+- rule: Activate property search form
+  steps:
+    - intent: search_properties 
+    - action: action_ai_rephrase
+    - action: action_search_properties
+    - active_loop: action_search_properties
+
+# - rule: Submit property search form
+#   condition:
+#     - active_loop: property_search_form
+#   steps:
+#     - action: property_search_form
+#     - active_loop: null
+#     - action: utter_ack_prefs
+#     - action: action_search_properties
+
+# - rule: Start sell property form
+#   steps:
+#     - intent: sell_property
+#     - action: sell_property_form
+#     - active_loop: sell_property_form
+
+# - rule: Submit sell property form
+#   condition:
+#     - active_loop: sell_property_form
+#   steps:
+#     - action: sell_property_form
+#     - active_loop: null
+#     - action: action_embed_property

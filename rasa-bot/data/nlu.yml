@@ -1,0 +1,110 @@
+# rasa-bot/data/nlu.yml
+version: "3.1"
+
+
+nlu:
+
+- intent: greet
+  examples: |
+    - hi
+    - hello
+    - chào
+    - xin chào
+    - hey
+    - hallo
+    - yo
+    - wassup
+
+
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - tạm biệt
+    - hẹn gặp lại
+    - see you later
+    - see you
+
+
+- intent: search_properties
+  examples: |
+    - Tôi muốn mua mua [căn hộ](property_type) [Quận 7](location)
+    - Tôi muốn mua [nhà ở](property_type) [Phú Nhuận](location)
+    - Tôi muốn mua [nhà mặt tiền](property_type) [Quận 10](location)
+    - Tôi muốn mua [studio](property_type) [Bình Thạnh](location)
+    - Tôi muốn mua [căn hộ](property_type) ở [Quận 7](location)
+    - Tôi cần mua [nhà ở](property_type) ở [Phú Nhuận](location)
+    - Tôi cần mua [nhà mặt tiền](property_type) ở [Quận 10](location)
+    - Tôi muốn mua [studio](property_type) ở [Bình Thạnh](location)
+    - Mình muốn mua [căn hộ](property_type) [Quận 7](location)
+    - Mình muốn mua [nhà ở](property_type) [Phú Nhuận](location)
+    - Mình muốn mua [nhà mặt tiền](property_type) [Quận 10](location)
+    - Mình muốn mua [studio](property_type) [Bình Thạnh](location)
+
+    
+# - intent: sell_property
+#   examples: |
+#     - tui muốn bán căn hộ
+#     - tôi muốn bán nhà
+#     - tôi muốn bán studio
+#     - bạn có mua nhà không
+#     - Tôi muốn đăng bán căn hộ
+
+- intent: provide_preferences
+  examples: |
+    - ngân sách [900000000](budget)
+    - tối đa [2000000000](budget)
+    - cần [2](bedrooms) phòng ngủ
+    - chuyển [tháng này](urgency)
+    - chuyển [tháng sau](urgency)
+    - nhỏ hơn [1200000000](budget)
+    - ở [Quận 7](location)
+    - ở [Phú Nhuận](location)
+    - Mua nhà ở [Bình Thạnh](location) giá dưới [1500000000](budget) có [3](bedrooms) phòng ngủ, chuyển [tháng sau](urgency)
+    - Mua [căn hộ](property_type) ở [Quận 7](location) giá dưới [1500000000](budget) có [3](bedrooms) phòng ngủ, chuyển [tháng sau](urgency)
+- intent: ask_recommendation
+  examples: |
+    - what do you recommend
+    - recommend something for me
+
+- intent: list_properties
+  examples: |
+    - list some options
+    - show me properties
+
+
+- intent: ask_price
+  examples: |
+    - how much is it
+    - what’s the price
+
+- synonym: bedrooms
+  examples: |
+    - phòng ngủ
+    - phòng ngủ
+    - phòng
+    - sleeping room
+    - ngủ
+- synonym: căn hộ
+  examples: |
+    - chung cư
+    - apartment
+    - căn chung cư
+
+- synonym: studio
+  examples: |
+    - phòng studio
+    - căn studio
+
+- synonym: nhà ở
+  examples: |
+    - nhà riêng
+    - nhà dân dụng
+    - house
+
+- synonym: nhà mặt tiền
+  examples: |
+    - mặt tiền
+    - nhà phố
+    - townhouse

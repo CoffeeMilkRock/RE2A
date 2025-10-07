@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <script src="https://unpkg.com/@rasahq/rasa-chat" type="application/javascript"></script>
+        <div id="rasa-chat-widget" data-websocket-url="http://localhost:5005/"></div>
+        <script>
+            window.WebChat.default({
+            socketUrl: "http://localhost:5005",
+            socketPath: "/socket.io/",
+            storage: window.localStorage,
+            sessionId: "dev" // stable id
+            }, null);
+        </script>
+    
+    </body>
+</html>

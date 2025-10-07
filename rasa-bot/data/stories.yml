@@ -1,0 +1,14 @@
+# rasa-bot/data/stories.yml
+version: "3.1"
+
+
+stories:
+  - story: happy path search
+    steps:
+      - intent: greet
+      - action: action_initialize_conversation
+      - action: utter_greet
+      - intent: search_properties
+      - action: action_ai_rephrase
+      - active_loop: action_search_properties
+
